@@ -7,12 +7,19 @@ Created on Sun Nov  6 23:47:25 2016
 """
 
 # Librairies
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
+
+# Math Helper
+import numpy
+
+# plot Helper
+import matplotlib.pyplot
+
+# Import/Manage dataset
+# import pandas as pd
+import pandas
 
 # Dataset
-dataset = pd.read_csv('Data.csv')
+dataset = pandas.read_csv('Data.csv')
 
 # Matrix of features: Independant variables
 # iloc --> first argument is lines, second is columns.

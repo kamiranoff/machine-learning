@@ -3,8 +3,6 @@
 # Importing the dataset
 dataset = read.csv('Data.csv')
 
-
-
 # Replace missing values with the mean (the average)
 #is.na = is missing..
 dataset$Age = ifelse(is.na(dataset$Age),
@@ -15,3 +13,11 @@ dataset$Salary = ifelse(is.na(dataset$Salary),
                         ave(dataset$Salary, FUN = function(x) mean(x, na.rm = TRUE)),
                         dataset$Salary)
       
+# Encoding Categorical data
+dataset$Country = factor(dataset$Country,
+                         levels = c('France', 'Spain', 'Germany'),
+                         labels = c(1,2,3))
+
+dataset$Purchased = factor(dataset$Purchased,
+                             levels = c('No', 'Yes'),
+                             labels = c(0,1))
