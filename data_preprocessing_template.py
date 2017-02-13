@@ -58,4 +58,8 @@ X = oneHotEncoder.fit_transform(X).toarray()
 labelEncoder_y = LabelEncoder()
 Y = labelEncoder_y.fit_transform(Y)
 
-print(X)
+# Splitting the dataset into the Training set and Test set
+from sklearn.cross_validation import train_test_split
+
+# 20% are going in the test set
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size = 0.2, random_state = 0)
