@@ -5,24 +5,8 @@ setwd("~/nemeacreation/sites/tutorials/machine-learning")
 # Importing the dataset
 dataset = read.csv('Data.csv')
 
-# Replace missing values with the mean (the average)
-#is.na = is missing..
-dataset$Age = ifelse(is.na(dataset$Age),
-                     ave(dataset$Age, FUN = function(x) mean(x, na.rm = TRUE)),
-                     dataset$Age)
-
-dataset$Salary = ifelse(is.na(dataset$Salary),
-                        ave(dataset$Salary, FUN = function(x) mean(x, na.rm = TRUE)),
-                        dataset$Salary)
-      
-# Encoding Categorical data
-dataset$Country = factor(dataset$Country,
-                         levels = c('France', 'Spain', 'Germany'),
-                         labels = c(1,2,3))
-
-dataset$Purchased = factor(dataset$Purchased,
-                             levels = c('No', 'Yes'),
-                             labels = c(0,1))
+# Select sub dataset from dataset
+# dataset = dataset[, 2:3];
 
 # Splitting the dataset into the Training set and Test set
 
@@ -40,9 +24,6 @@ test_set = subset(dataset, split == FALSE)
 
 # Feature scaling
 # Process of modifing variables (Here age and salary) so they have the scale.
-training_set[,2:3] = scale(training_set[,2:3])
-test_set[,2:3] = scale(test_set[,2:3])
-
-
-
+# training_set[,2:3] = scale(training_set[,2:3])
+# test_set[,2:3] = scale(test_set[,2:3])
 

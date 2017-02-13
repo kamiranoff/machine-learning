@@ -32,6 +32,32 @@ X = dataset.iloc[:, :-1].values
 Y = dataset.iloc[:, 3].values
 
 
+# Taking care of missing data
+from sklearn.preprocessing import Imputer
+imputer = Imputer(missing_values='NaN', strategy='mean', axis=0)
+
+# fit to colum at index 1 and 2 age and salary -> Upperbound not included
+imputer = imputer.fit(X[:, 1:3])
+X[:, 1:3] = imputer.transform(X[:, 1:3])
+
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+
+
+#Country
+# Encode country column into numbers
+labelEncoder_x = LabelEncoder()
+X[:, 0] = labelEncoder_x.fit_transform(X[:, 0])
+
+# Make a specific column for each entry in the column with boolean value
+# so there is order in categorical variables
+oneHotEncoder = OneHotEncoder(categorical_features=[0])
+X = oneHotEncoder.fit_transform(X).toarray()
+
+
+#Purchased
+labelEncoder_y = LabelEncoder()
+Y = labelEncoder_y.fit_transform(Y)
+
 # Splitting the dataset into the Training set and Test set
 from sklearn.cross_validation import train_test_split
 
@@ -40,8 +66,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size = 0.2, rando
 
 # Feature scaling
 # Process of modifing variables (Here age and salary) so they have the scale.
-#from sklearn.preprocessing import StandardScaler
-#sc_X = StandardScaler()
-#X_train = sc_X.fit_transform(X_train)
-#X_test = sc_X.transform(X_test)
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+X_train = sc_X.fit_transform(X_train)
+X_test = sc_X.transform(X_test)
 
