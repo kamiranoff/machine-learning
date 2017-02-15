@@ -19,7 +19,7 @@ import matplotlib.pyplot
 import pandas
 
 # Dataset
-dataset = pandas.read_csv('Data.csv')
+dataset = pandas.read_csv('./data/Data.csv')
 
 # Matrix of features: Independant variables
 # iloc --> first argument is lines, second is columns.
@@ -33,7 +33,7 @@ Y = dataset.iloc[:, 3].values
 
 
 # Splitting the dataset into the Training set and Test set
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 
 # 20% are going in the test set
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size = 0.2, random_state = 0)

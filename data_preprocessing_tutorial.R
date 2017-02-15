@@ -3,7 +3,7 @@
 # set working directory
 setwd("~/nemeacreation/sites/tutorials/machine-learning")
 # Importing the dataset
-dataset = read.csv('Data.csv')
+dataset = read.csv('data/Data.csv')
 
 # Select sub dataset from dataset
 # dataset = dataset[, 2:3];

@@ -19,7 +19,7 @@ import matplotlib.pyplot
 import pandas
 
 # Dataset
-dataset = pandas.read_csv('Data.csv')
+dataset = pandas.read_csv('./data/Data.csv')
 
 # Matrix of features: Independant variables
 # iloc --> first argument is lines, second is columns.
@@ -37,7 +37,7 @@ from sklearn.preprocessing import Imputer
 imputer = Imputer(missing_values='NaN', strategy='mean', axis=0)
 
 # fit to colum at index 1 and 2 age and salary -> Upperbound not included
-imputer = imputer.fit(X[:, 1:3])
+imputer.fit(X[:, 1:3])
 X[:, 1:3] = imputer.transform(X[:, 1:3])
 
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
@@ -49,7 +49,7 @@ labelEncoder_x = LabelEncoder()
 X[:, 0] = labelEncoder_x.fit_transform(X[:, 0])
 
 # Make a specific column for each entry in the column with boolean value
-# so there is order in categorical variables
+# so there is no order in categorical variables
 oneHotEncoder = OneHotEncoder(categorical_features=[0])
 X = oneHotEncoder.fit_transform(X).toarray()
 
@@ -59,7 +59,7 @@ labelEncoder_y = LabelEncoder()
 Y = labelEncoder_y.fit_transform(Y)
 
 # Splitting the dataset into the Training set and Test set
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 
 # 20% are going in the test set
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size = 0.2, random_state = 0)
